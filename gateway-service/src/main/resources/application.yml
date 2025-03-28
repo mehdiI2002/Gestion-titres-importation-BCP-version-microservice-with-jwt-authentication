@@ -1,0 +1,29 @@
+spring:
+  cloud:
+    gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]': # Cela s'applique à toutes les routes
+            allowedOrigins:
+              - "http://localhost:3000"   # Origines autorisées (frontend)
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowedHeaders: "*"
+            allowCredentials: true
+      routes:
+        - id: r1
+          uri: lb://GESTION-DES-TITRES-IMPORTATION-BCP #load balancer
+          predicates:
+            - Path=/titles/** # Toutes les requêtes commençant par /titles iront à GESTION-DES-TITRES-IMPORTATION-BCP
+          filters:
+            - name: AuthenticationFilter
+        - id: r2
+          uri: lb://SECURITY-SERVICE-AMIGOS-CODE #load balancer
+          predicates:
+            - Path=/auth/**
+
+
