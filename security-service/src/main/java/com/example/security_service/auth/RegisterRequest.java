@@ -1,7 +1,7 @@
-package com.example.security_service_amigos_code.auth;
+package com.example.security_service.auth;
 
 
-import com.example.security_service_amigos_code.user.Role;
+import com.example.security_service.user.Role;
 
 public class RegisterRequest {
     private String firstName ;

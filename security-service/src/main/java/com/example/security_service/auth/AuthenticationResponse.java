@@ -1,4 +1,4 @@
-package com.example.security_service_amigos_code.auth;
+package com.example.security_service.auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

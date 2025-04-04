@@ -25,7 +25,7 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory {
 
             return webClientBuilder.build()
                     .post()
-                    .uri("lb://SECURITY-SERVICE-AMIGOS-CODE/auth/authenticatebytoken") // URI du service de sécurité
+                    .uri("lb://SECURITY-SERVICE/auth/authenticatebytoken") // URI du service de sécurité
                     .header(HttpHeaders.AUTHORIZATION, authHeader) // Passer le token dans les en-têtes
                     .retrieve()
                     .bodyToMono(Void.class) // Ne récupère aucune donnée en réponse

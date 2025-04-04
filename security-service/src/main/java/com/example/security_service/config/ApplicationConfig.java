@@ -1,6 +1,6 @@
-package com.example.security_service_amigos_code.config;
+package com.example.security_service.config;
 
-import com.example.security_service_amigos_code.Repository.UserRepository;
+import com.example.security_service.Repository.UserRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -14,7 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 public class ApplicationConfig {
-    private  UserRepository userRepository;
+    private UserRepository userRepository;
 
     public ApplicationConfig(UserRepository userRepository) {
         this.userRepository = userRepository;

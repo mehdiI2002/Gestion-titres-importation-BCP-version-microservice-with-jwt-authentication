@@ -1,4 +1,4 @@
-package com.example.security_service_amigos_code.config;
+package com.example.security_service.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

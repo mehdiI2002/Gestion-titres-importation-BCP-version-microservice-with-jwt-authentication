@@ -1,4 +1,4 @@
-package com.example.security_service_amigos_code.web;
+package com.example.security_service.web;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

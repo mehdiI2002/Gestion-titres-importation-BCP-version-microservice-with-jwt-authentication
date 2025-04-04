@@ -1,10 +1,10 @@
-package com.example.security_service_amigos_code.web;
+package com.example.security_service.web;
 
-import com.example.security_service_amigos_code.auth.AuthenticationResponse;
-import com.example.security_service_amigos_code.auth.AuthenticationService;
-import com.example.security_service_amigos_code.auth.RegisterRequest;
+import com.example.security_service.auth.AuthenticationResponse;
+import com.example.security_service.auth.AuthenticationService;
+import com.example.security_service.auth.RegisterRequest;
+import com.example.security_service.config.JwtAuthentificationFilter;
 
-import com.example.security_service_amigos_code.config.JwtAuthentificationFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +18,7 @@ import java.util.Map;
 
 @RestController
 public class AuthentificationController {
-    private  AuthenticationService service ;
+    private AuthenticationService service ;
     private JwtAuthentificationFilter filter ;
     private static final Logger logger = LoggerFactory.getLogger(JwtAuthentificationFilter.class);
 

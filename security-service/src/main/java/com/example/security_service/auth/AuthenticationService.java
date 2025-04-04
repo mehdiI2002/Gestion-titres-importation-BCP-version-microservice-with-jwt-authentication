@@ -1,9 +1,8 @@
-package com.example.security_service_amigos_code.auth;
+package com.example.security_service.auth;
 
-import com.example.security_service_amigos_code.Repository.UserRepository;
-import com.example.security_service_amigos_code.service.JwtService;
-import com.example.security_service_amigos_code.user.Role;
-import com.example.security_service_amigos_code.user.User;
+import com.example.security_service.Repository.UserRepository;
+import com.example.security_service.service.JwtService;
+import com.example.security_service.user.User;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -11,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AuthenticationService {
-private  UserRepository userRepository;
+private UserRepository userRepository;
 private PasswordEncoder passwordEncoder;
 private JwtService jwtService;
 private  AuthenticationManager authenticationManager;

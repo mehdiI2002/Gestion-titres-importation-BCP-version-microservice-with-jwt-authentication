@@ -1,6 +1,6 @@
-package com.example.security_service_amigos_code.config;
+package com.example.security_service.config;
 
-import com.example.security_service_amigos_code.service.JwtService;
+import com.example.security_service.service.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

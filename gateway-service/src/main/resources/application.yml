@@ -22,7 +22,7 @@ spring:
           filters:
             - name: AuthenticationFilter
         - id: r2
-          uri: lb://SECURITY-SERVICE-AMIGOS-CODE #load balancer
+          uri: lb://SECURITY-SERVICE #load balancer
           predicates:
             - Path=/auth/**
 

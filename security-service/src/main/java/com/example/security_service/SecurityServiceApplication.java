@@ -1,11 +1,11 @@
-package com.example.security_service_amigos_code;
+package com.example.security_service;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SecurityServiceAmigosCodeApplication {
+public class SecurityServiceApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(SecurityServiceAmigosCodeApplication.class, args);
+		SpringApplication.run(SecurityServiceApplication.class, args);
 	}
 }

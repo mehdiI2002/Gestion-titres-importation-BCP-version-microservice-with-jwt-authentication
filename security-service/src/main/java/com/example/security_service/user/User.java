@@ -1,4 +1,4 @@
-package com.example.security_service_amigos_code.user;
+package com.example.security_service.user;
 
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
