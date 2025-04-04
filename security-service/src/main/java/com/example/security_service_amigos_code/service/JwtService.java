@@ -1,10 +1,12 @@
 package com.example.security_service_amigos_code.service;
 
+import com.example.security_service_amigos_code.user.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,8 @@ import java.util.function.Function;
 @Service
 public class JwtService {
     private static final String SECRET_KEY="8F3B7D2D4C5A0E6F8A3B2F6D8E5A2C3B4C1A7E5F6F2B8A4D3E1B7C4F5A2D8E3";
+
+
     public String extractUserNameFromJwt(String token) {
         return extractClaim(token,Claims::getSubject);
     }
@@ -36,7 +40,11 @@ public class JwtService {
 
 
     public String generateToken( UserDetails userDetails){
-        return generateToken(new HashMap<>(),userDetails);
+        Map<String, Object> claims = new HashMap<>();
+        if (userDetails instanceof User) {
+            claims.put("role", ((User) userDetails).getRole().name());
+        }
+        return generateToken(claims,userDetails);
 
     }
     public String generateToken(
@@ -48,7 +56,7 @@ public class JwtService {
                 .setClaims(extraClaims)
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis()+1000*60*24))
+                .setExpiration(new Date(System.currentTimeMillis()+1000*60*60*24))
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)
                 .compact();
     }

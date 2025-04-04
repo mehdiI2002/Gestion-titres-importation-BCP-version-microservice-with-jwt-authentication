@@ -16,9 +16,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-
 import java.io.IOException;
-
 @Component
 public class JwtAuthentificationFilter extends OncePerRequestFilter {
     private static final Logger logger = LoggerFactory.getLogger(JwtAuthentificationFilter.class);
@@ -44,7 +42,6 @@ public class JwtAuthentificationFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
             return;
         }
-
         String jwt = authHeader.substring(7);
         String userEmail = jwtService.extractUserNameFromJwt(jwt);
         logger.info("Extracted email from JWT: {}", userEmail);
@@ -65,8 +62,6 @@ public class JwtAuthentificationFilter extends OncePerRequestFilter {
         }
         filterChain.doFilter(request, response);
     }
-
-
     public boolean authenticateByJwtToken(HttpServletRequest request) {
         boolean isAuthenticated = false;
         final String authHeader = request.getHeader("Authorization");

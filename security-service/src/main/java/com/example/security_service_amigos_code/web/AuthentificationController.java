@@ -12,13 +12,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.Map;
 
-@RestController
 
+@RestController
 public class AuthentificationController {
     private  AuthenticationService service ;
     private JwtAuthentificationFilter filter ;
@@ -27,6 +25,7 @@ public class AuthentificationController {
     public AuthentificationController(AuthenticationService service, JwtAuthentificationFilter filter) {
         this.service = service;
         this.filter = filter;
+
     }
     @PostMapping("/auth/register")
     public ResponseEntity<AuthenticationResponse> register(
@@ -74,5 +73,6 @@ public class AuthentificationController {
             ));
         }
     }
+
 
 }

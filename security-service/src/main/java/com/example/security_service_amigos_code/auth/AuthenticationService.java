@@ -24,7 +24,7 @@ private  AuthenticationManager authenticationManager;
     }
     public AuthenticationResponse register(RegisterRequest request) {
         // creer user et enregistrer en bd et genrer le token
-      User user = new User(null,request.getFirstName(),request.getLastName(),request.getEmail(),passwordEncoder.encode(request.getPassword()), Role.USER);
+      User user = new User(null,request.getFirstName(),request.getLastName(),request.getEmail(),passwordEncoder.encode(request.getPassword()),request.getRole());
       userRepository.save(user);
      String jwtToken = jwtService.generateToken(user);
       return new AuthenticationResponse(jwtToken);
@@ -42,4 +42,5 @@ private  AuthenticationManager authenticationManager;
         return  new AuthenticationResponse(jwtToken);
 
     }
+
 }
