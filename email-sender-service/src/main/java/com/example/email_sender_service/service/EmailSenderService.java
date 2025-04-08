@@ -1,0 +1,44 @@
+package com.example.email_sender_service.service;
+
+import jakarta.mail.internet.MimeMessage;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailException;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.stereotype.Service;
+import jakarta.mail.MessagingException;
+
+import java.util.List;
+
+@Service
+public class EmailSenderService {
+    @Autowired
+    private JavaMailSender mailSender;
+
+    public void sendAdminEmail(List<String> adminEmails, String userEmail, String role) {
+        try {
+            for (String adminEmail : adminEmails) {
+                MimeMessage message = mailSender.createMimeMessage();
+                MimeMessageHelper helper = new MimeMessageHelper(message, true);
+
+                helper.setFrom("mehdiamarti33@gmail.com");
+
+                helper.setTo(adminEmail);
+                helper.setSubject("Nouvelle demande d'inscription : " + userEmail);
+                String body = "<p>L'utilisateur <strong>" + userEmail + "</strong> a fait une demande d'accès à l'application en tant que <strong>" + role + "</strong>.</p>"
+                        + "<p>Souhaitez-vous approuver cette demande ?</p>"
+                        + "<a href='https://tonapp.com/valider?user=" + userEmail + "'>✅ Accepter</a>"
+                        + "<a href='https://tonapp.com/refuser?user=" + userEmail + "'>❌ Refuser</a>";
+
+                helper.setText(body, true);  // HTML content
+                message.addHeader("X-Priority", "1");
+                message.addHeader("X-MSMail-Priority", "High");
+                message.addHeader("Importance", "High");
+                mailSender.send(message);
+            }
+        } catch (MessagingException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Erreur lors de l'envoi de l'email aux admins.");
+        }
+    }
+}

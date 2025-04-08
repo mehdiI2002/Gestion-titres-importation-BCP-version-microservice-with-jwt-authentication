@@ -5,14 +5,20 @@ import com.example.security_service.auth.AuthenticationService;
 import com.example.security_service.auth.RegisterRequest;
 import com.example.security_service.config.JwtAuthentificationFilter;
 
+import com.example.security_service.service.UserService;
+import com.example.security_service.user.User;
 import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+
+import java.util.List;
 import java.util.Map;
 
 
@@ -21,10 +27,11 @@ public class AuthentificationController {
     private AuthenticationService service ;
     private JwtAuthentificationFilter filter ;
     private static final Logger logger = LoggerFactory.getLogger(JwtAuthentificationFilter.class);
-
-    public AuthentificationController(AuthenticationService service, JwtAuthentificationFilter filter) {
+private UserService userService;
+    public AuthentificationController(AuthenticationService service, JwtAuthentificationFilter filter, UserService userService) {
         this.service = service;
         this.filter = filter;
+        this.userService = userService;
 
     }
     @PostMapping("/auth/register")
@@ -72,6 +79,11 @@ public class AuthentificationController {
                     "timestamp", System.currentTimeMillis()
             ));
         }
+    }
+@GetMapping("/admins/listAdmin")
+        public List<String> getAdmins(){
+ List<String> admins = userService.getAllAdmins();
+ return admins ;
     }
 
 

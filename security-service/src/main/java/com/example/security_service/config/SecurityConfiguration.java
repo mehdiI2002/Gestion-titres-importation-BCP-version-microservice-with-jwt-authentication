@@ -25,7 +25,7 @@ public class SecurityConfiguration {
         http
                 .csrf(csrf -> csrf.disable()) // Désactivation de la protection CSRF
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/register", "/auth/authenticate").permitAll()
+                        .requestMatchers("/auth/register", "/auth/authenticate","/admins/listAdmin").permitAll()
                         .requestMatchers("/auth/democontroller").hasAuthority("USER")                        .anyRequest().authenticated() //// Authentifie toutes les autres requête
                 )
             .sessionManagement(session -> session

@@ -25,5 +25,7 @@ spring:
           uri: lb://SECURITY-SERVICE #load balancer
           predicates:
             - Path=/auth/**
-
-
+        - id: r3
+          uri: lb://EMAIL-SENDER-SERVICE #load balancer
+          predicates:
+            - Path=/email/**
