@@ -12,8 +12,12 @@ import java.util.List;
 
 @Service
 public class EmailSenderService {
-    @Autowired
-    private JavaMailSender mailSender;
+
+    private JavaMailSender  mailSender;
+
+    public EmailSenderService(JavaMailSender mailSender) {
+        this.mailSender = mailSender;
+    }
 
     public void sendAdminEmail(List<String> adminEmails, String userEmail, String role) {
         try {

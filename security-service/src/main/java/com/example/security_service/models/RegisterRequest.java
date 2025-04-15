@@ -1,4 +1,4 @@
-package com.example.security_service.auth;
+package com.example.security_service.models;
 
 
 import com.example.security_service.user.Role;

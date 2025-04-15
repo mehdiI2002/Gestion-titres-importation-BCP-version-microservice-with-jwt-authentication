@@ -19,12 +19,10 @@ public class User implements UserDetails {
     private String password ;
     @Enumerated(EnumType.STRING)
     private Role role ;
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));
     }
-
     @Override
     public String getPassword() {
         return password;
@@ -41,13 +39,14 @@ public class User implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        return UserDetails.super.isAccountNonLocked();
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return UserDetails.super.isCredentialsNonExpired();
+        return true;
     }
+
 
     @Override
     public boolean isEnabled() {
@@ -105,5 +104,13 @@ public class User implements UserDetails {
     public void setRole(Role role) {
         this.role = role;
     }
+    public String getRoleName(){
+         return role.name();
+    }
+    public void setRoleName(String roleName){
+        this.role = Role.valueOf(roleName);
+
+    }
+
 }
 

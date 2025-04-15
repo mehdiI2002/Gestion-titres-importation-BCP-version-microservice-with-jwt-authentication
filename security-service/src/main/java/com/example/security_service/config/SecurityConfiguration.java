@@ -26,14 +26,19 @@ public class SecurityConfiguration {
                 .csrf(csrf -> csrf.disable()) // Désactivation de la protection CSRF
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/register", "/auth/authenticate","/admins/listAdmin").permitAll()
-                        .requestMatchers("/auth/democontroller").hasAuthority("USER")                        .anyRequest().authenticated() //// Authentifie toutes les autres requête
+                        .requestMatchers("/auth/democontroller").hasAuthority("USER")
+                        .requestMatchers("/auth/user/deleteUser").hasAuthority("ADMIN")
+                        .requestMatchers("/auth/user/users").hasAuthority("ADMIN")
+                        .requestMatchers("/auth/user/createUser").hasAuthority("ADMIN")
+
+                        .anyRequest().authenticated() //// Authentifie toutes les autres requête
+
                 )
             .sessionManagement(session -> session
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS) /// La session est stateless (pas de session persistante)
         )
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
-
         return http.build();
 }
 }

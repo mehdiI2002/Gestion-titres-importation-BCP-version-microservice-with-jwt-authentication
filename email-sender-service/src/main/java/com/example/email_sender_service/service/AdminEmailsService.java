@@ -7,14 +7,10 @@ import org.springframework.web.client.RestTemplate;
 import java.util.List;
 @Service
 public class AdminEmailsService {
-
     private  RestTemplate restTemplate;
-
-
     public AdminEmailsService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
-
     public List<String> getAdminEmailsFromUserService() {
         String url = "http://localhost:9001/admins/listAdmin";  // URL de l'API REST
         List<String> adminEmails = restTemplate.getForObject(url, List.class);

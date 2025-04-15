@@ -1,4 +1,4 @@
-package com.example.security_service.auth;
+package com.example.security_service.models;
 
 public class AuthenticationRequest {
     private String email ;

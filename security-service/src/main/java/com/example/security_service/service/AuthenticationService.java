@@ -1,7 +1,9 @@
-package com.example.security_service.auth;
+package com.example.security_service.service;
 
 import com.example.security_service.Repository.UserRepository;
-import com.example.security_service.service.JwtService;
+import com.example.security_service.models.AuthenticationRequest;
+import com.example.security_service.models.AuthenticationResponse;
+import com.example.security_service.models.RegisterRequest;
 import com.example.security_service.user.User;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -28,7 +30,7 @@ private  AuthenticationManager authenticationManager;
      String jwtToken = jwtService.generateToken(user);
       return new AuthenticationResponse(jwtToken);
     }
-    public AuthenticationResponse authenticate(RegisterRequest request) {
+    public AuthenticationResponse authenticate(AuthenticationRequest request) {
          authenticationManager.authenticate(
           new UsernamePasswordAuthenticationToken(
                   request.getEmail(),// email envoyer par user
@@ -39,7 +41,6 @@ private  AuthenticationManager authenticationManager;
                  .orElseThrow();
         String jwtToken = jwtService.generateToken(user);
         return  new AuthenticationResponse(jwtToken);
-
     }
 
 }

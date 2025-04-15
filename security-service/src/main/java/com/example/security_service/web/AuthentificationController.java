@@ -1,12 +1,12 @@
 package com.example.security_service.web;
 
-import com.example.security_service.auth.AuthenticationResponse;
-import com.example.security_service.auth.AuthenticationService;
-import com.example.security_service.auth.RegisterRequest;
+import com.example.security_service.models.AuthenticationRequest;
+import com.example.security_service.models.AuthenticationResponse;
+import com.example.security_service.service.AuthenticationService;
+import com.example.security_service.models.RegisterRequest;
 import com.example.security_service.config.JwtAuthentificationFilter;
 
 import com.example.security_service.service.UserService;
-import com.example.security_service.user.User;
 import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.Map;
@@ -42,8 +41,10 @@ private UserService userService;
     }
     @PostMapping("/auth/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(
-            @RequestBody RegisterRequest request
+            @RequestBody AuthenticationRequest request
     ) {
+        logger.info("Authenticating user with email: {}", request.getEmail());
+        logger.info("Password provided: {}", request.getPassword());
         return ResponseEntity.ok(service.authenticate(request));
     }
     @PostMapping("/auth/authenticatebytoken")

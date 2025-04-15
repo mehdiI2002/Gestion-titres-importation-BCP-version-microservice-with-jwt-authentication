@@ -20,9 +20,7 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory {
             if (!exchange.getRequest().getHeaders().containsKey(HttpHeaders.AUTHORIZATION)) {
                 throw new RuntimeException("Missing authorization information");
             }
-
             String authHeader = exchange.getRequest().getHeaders().get(HttpHeaders.AUTHORIZATION).get(0);
-
             return webClientBuilder.build()
                     .post()
                     .uri("lb://SECURITY-SERVICE/auth/authenticatebytoken") // URI du service de sécurité
