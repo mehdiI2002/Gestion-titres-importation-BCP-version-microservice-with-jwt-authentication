@@ -30,7 +30,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/auth/user/deleteUser").hasAuthority("ADMIN")
                         .requestMatchers("/auth/user/users").hasAuthority("ADMIN")
                         .requestMatchers("/auth/user/createUser").hasAuthority("ADMIN")
-
+                        .requestMatchers("/auth/user/updateUser").hasAuthority("ADMIN")
                         .anyRequest().authenticated() //// Authentifie toutes les autres requête
 
                 )
